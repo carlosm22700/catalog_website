@@ -24,71 +24,93 @@
  */
 
 
-const FRESH_PRINCE_URL = "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL = "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL = "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
+const CEVICHE_PICTURE_URL = "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
+const EMPANADAS_PICTURE_URL = "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
+const TACOS_PICTURE_URL = "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
+const GALLO_PINTO_PICTURE_URL = "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
+const FEIJOADA_PICTURE_URL = "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
 
 // This is an array of strings (TV show titles)
-let titles = [
-    "Fresh Prince of Bel Air",
-    "Curb Your Enthusiasm",
-    "East Los High"
+// Array of objects, each representing a dish
+let dishes = [
+    {
+        name: "Ceviche",
+        country: "Peru",
+        ingredients: "Fish, Lime, Onion, Cilantro",
+        image: CEVICHE_PICTURE_URL,  // Replace with actual image URL
+        description: "A refreshing seafood dish marinated in lime juice."
+    },
+    {
+        name: "Empanadas",
+        country: "Argentina",
+        ingredients: "Beef, Onion, Egg, Dough",
+        image: EMPANADAS_PICTURE_URL,  // Replace with actual image URL
+        description: "A savory pastry filled with spiced meat and other ingredients."
+    },
+    {
+        name: "Tacos",
+        country: "Mexico",
+        ingredients: "Corn Tortillas, Beef, Lettuce, Cheese",
+        image: TACOS_PICTURE_URL,  // Replace with actual image URL
+        description: "A traditional Mexican dish consisting of a corn tortilla topped with various fillings."
+    },
+    {
+        name: "Gallo Pinto",
+        country: "Nicaragua",
+        ingredients: "Rice, Beans, Onion, Bell Pepper",
+        image: GALLO_PINTO_PICTURE_URL,  // Replace with actual image URL
+        description: "A staple Nicaraguan dish of rice and beans cooked together with onion and bell pepper."
+    },
+    {
+        name: "Feijoada",
+        country: "Brazil",
+        ingredients: "Black Beans, Pork, Beef, Bacon",
+        image: FEIJOADA_PICTURE_URL,  // Replace with actual image URL
+        description: "A hearty stew of black beans with pork and beef, traditionally served over rice."
+    }
 ];
-// Your final submission should have much more data than this, and 
-// you should use more than just an array of strings to store it all.
 
-
-// This function adds cards the page to display the data in the array
+// Function to add cards to the page to display the data in the array
 function showCards() {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
     const templateCard = document.querySelector(".card");
-    
-    for (let i = 0; i < titles.length; i++) {
-        let title = titles[i];
 
-        // This part of the code doesn't scale very well! After you add your
-        // own data, you'll need to do something totally different here.
-        let imageURL = "";
-        if (i == 0) {
-            imageURL = FRESH_PRINCE_URL;
-        } else if (i == 1) {
-            imageURL = CURB_POSTER_URL;
-        } else if (i == 2) {
-            imageURL = EAST_LOS_HIGH_POSTER_URL;
-        }
-
+    dishes.forEach(dish => {
         const nextCard = templateCard.cloneNode(true); // Copy the template card
-        editCardContent(nextCard, title, imageURL); // Edit title and image
+        editCardContent(nextCard, dish.name, dish.image, dish.country, dish.ingredients, dish.description); // Edit card content
         cardContainer.appendChild(nextCard); // Add new card to the container
-    }
+    });
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+// Function to edit the content of each card
+function editCardContent(card, name, imageURL, country, ingredients, description) {
     card.style.display = "block";
 
-    const cardHeader = card.querySelector("h2");
-    cardHeader.textContent = newTitle;
+    card.querySelector("h2").textContent = name;
+    card.querySelector("img").src = imageURL;
+    card.querySelector("img").alt = name + " Image";
+    card.querySelector("ul").innerHTML = `
+        <li><strong>Country:</strong> ${country}</li>
+        <li><strong>Ingredients:</strong> ${ingredients}</li>
+        <li>${description}</li>
+    `;
 
-    const cardImage = card.querySelector("img");
-    cardImage.src = newImageURL;
-    cardImage.alt = newTitle + " Poster";
-
-    // You can use console.log to help you debug!
-    // View the output by right clicking on your website,
-    // select "Inspect", then click on the "Console" tab
-    console.log("new card:", newTitle, "- html: ", card);
+    // Debugging output
+    console.log("new card:", name, "- html: ", card);
 }
 
-// This calls the addCards() function when the page is first loaded
+// This calls the showCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
+// Functionality to remove the last dish
+function removeLastCard() {
+    dishes.pop(); // Remove the last dish from the array
+    showCards(); // Refresh the card display
+}
+
+// Functionality to display a quote
 function quoteAlert() {
     console.log("Button Clicked!")
     alert("I guess I can kiss heaven goodbye, because it got to be a sin to look this good!");
-}
-
-function removeLastCard() {
-    titles.pop(); // Remove last item in titles array
-    showCards(); // Call showCards again to refresh
 }
