@@ -24,11 +24,11 @@
  */
 
 
-const CEVICHE_PICTURE_URL = "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const EMPANADAS_PICTURE_URL = "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const TACOS_PICTURE_URL = "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
-const GALLO_PINTO_PICTURE_URL = "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const FEIJOADA_PICTURE_URL = "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
+const CEVICHE_PICTURE_URL = "https://www.laylita.com/recipes/wp-content/uploads/2013/07/2-Peruvian-ceviche.jpg";
+const EMPANADAS_PICTURE_URL = "https://tastesbetterfromscratch.com/wp-content/uploads/2020/05/Empanadas-2.jpg";
+const TACOS_PICTURE_URL = "https://s23209.pcdn.co/wp-content/uploads/2019/04/Mexican-Street-TacosIMG_9091.jpg";
+const GALLO_PINTO_PICTURE_URL = "https://www.laylita.com/recetas/wp-content/uploads/2022/06/Gallo-pinto-receta-de-Costa-Rica-y-Nicaragua.jpg";
+const FEIJOADA_PICTURE_URL = "https://www.daringgourmet.com/wp-content/uploads/2021/09/Feijoada-3.jpg";
 
 // This is an array of strings (TV show titles)
 // Array of objects, each representing a dish
@@ -50,7 +50,7 @@ let dishes = [
     {
         name: "Tacos",
         country: "Mexico",
-        ingredients: "Corn Tortillas, Beef, Lettuce, Cheese",
+        ingredients: "Corn Tortillas, Beef, Lettuce, Lime",
         image: TACOS_PICTURE_URL,  // Replace with actual image URL
         description: "A traditional Mexican dish consisting of a corn tortilla topped with various fillings."
     },
