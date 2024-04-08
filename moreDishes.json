@@ -1,0 +1,291 @@
+[
+  {
+    "id": 6,
+    "name": "Ajiaco",
+    "country": "Colombia",
+    "ingredients": [
+      { "name": "Chicken", "quantity": "1 lb", "preparation": "cubed" },
+      { "name": "Potatoes", "quantity": "3 lbs", "preparation": "sliced" },
+      { "name": "Corn", "quantity": "2", "preparation": "whole cobs" },
+      { "name": "Guasca", "quantity": "1 handful", "preparation": "dried" }
+    ],
+    "technique": "Simmer all ingredients until cooked. Serve hot with capers and cream.",
+    "image": "https://www.177milkstreet.com/assets/site/Recipes/_large/colombian-potato-soup-chicken-corn-capers-ajiaco-v.jpg",
+    "description": "A traditional Colombian soup made with chicken, three varieties of potatoes, and the Galinsoga parviflora herb."
+  },
+  {
+    "id": 7,
+    "name": "Pabellón Criollo",
+    "country": "Venezuela",
+    "ingredients": [
+      { "name": "Beef", "quantity": "2 lbs", "preparation": "shredded" },
+      { "name": "Black beans", "quantity": "2 cups", "preparation": "cooked" },
+      { "name": "Rice", "quantity": "2 cups", "preparation": "cooked" },
+      { "name": "Plantains", "quantity": "2", "preparation": "fried" }
+    ],
+    "technique": "Cook all ingredients separately, combine on a plate when serving.",
+    "image": "https://i.pinimg.com/originals/1e/03/f4/1e03f48f82c499bbbff857c7919f18d0.jpg",
+    "description": "A classic Venezuelan dish that combines shredded beef, black beans, rice, and fried plantains."
+  },
+  {
+    "id": 8,
+    "name": "Chiles en Nogada",
+    "country": "Mexico",
+    "ingredients": [
+      { "name": "Poblano Peppers", "quantity": "6", "preparation": "whole" },
+      { "name": "Picadillo", "quantity": "1 batch", "preparation": "cooked" },
+      {
+        "name": "Nogada",
+        "quantity": "2 cups",
+        "preparation": "blended cream sauce"
+      },
+      { "name": "Pomegranate", "quantity": "1", "preparation": "seeds" }
+    ],
+    "technique": "Stuff peppers with picadillo, cover with nogada sauce, top with pomegranate seeds.",
+    "image": "https://inmamamaggieskitchen.com/wp-content/uploads/2021/09/Chiles-en-Nogada.jpg",
+    "description": "Poblano chilis filled with picadillo, a mixture of meat and fruits, and topped with a walnut-based cream sauce and pomegranate seeds."
+  },
+  {
+    "id": 9,
+    "name": "Bandeja Paisa",
+    "country": "Colombia",
+    "ingredients": [
+      { "name": "Ground beef", "quantity": "1 lb", "preparation": "cooked" },
+      { "name": "Beans", "quantity": "1 cup", "preparation": "cooked" },
+      { "name": "Rice", "quantity": "1 cup", "preparation": "cooked" },
+      { "name": "Chicharrón", "quantity": "4 strips", "preparation": "fried" },
+      { "name": "Avocado", "quantity": "1", "preparation": "sliced" },
+      { "name": "Plantain", "quantity": "1", "preparation": "fried" }
+    ],
+    "technique": "Serve all ingredients on a platter.",
+    "image": "https://static.onecms.io/wp-content/uploads/sites/19/2017/08/03/bandejapaisa.jpg",
+    "description": "A hearty platter that includes various staples of Colombian cuisine, such as beans, rice, chicharrón, and avocado."
+  },
+  {
+    "id": 10,
+    "name": "Locro",
+    "country": "Argentina",
+    "ingredients": [
+      { "name": "Squash", "quantity": "2 lbs", "preparation": "cubed" },
+      { "name": "Maize", "quantity": "1 cup", "preparation": "whole kernel" },
+      { "name": "Beef", "quantity": "1 lb", "preparation": "cubed" },
+      { "name": "Pork", "quantity": "1 lb", "preparation": "cubed" }
+    ],
+    "technique": "Simmer all ingredients until fully cooked. Serve hot with a dollop of salsa.",
+    "image": "https://sweetsimplevegan.com/wp-content/uploads/2020/09/Locro-De-Papa-Ecuadorian-Potato-Cheese-Soup-Sweet-Simple-Vegan-6.jpg",
+    "description": "A thick stew popular in Argentine cuisine, madeof with squash, maize, and a mix of meats, providing a nourishing and filling meal especially during colder months."
+  },
+  {
+    "id": 11,
+    "name": "Coxinha",
+    "country": "Brazil",
+    "ingredients": [
+      { "name": "Chicken", "quantity": "500g", "preparation": "shredded" },
+      {
+        "name": "Cream cheese",
+        "quantity": "200g",
+        "preparation": "creamed"
+      },
+      {
+        "name": "Wheat flour",
+        "quantity": "300g",
+        "preparation": "for dough"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150g",
+        "preparation": "for coating"
+      }
+    ],
+    "technique": "Form the shredded chicken and cream cheese into tear-shaped dough balls, coat in breadcrumbs, and deep fry.",
+    "image": "https://www.oliviascuisine.com/wp-content/uploads/2014/07/coxinha5.jpg",
+    "description": "A popular Brazilian snack consisting of shredded chicken wrapped in dough, shaped into a teardrop, and deep-fried."
+  },
+  {
+    "id": 12,
+    "name": "Ropa Vieja",
+    "country": "Cuba",
+    "ingredients": [
+      {
+        "name": "Flank steak",
+        "quantity": "2 lbs",
+        "preparation": "boiled and shredded"
+      },
+      { "name": "Bell peppers", "quantity": "3", "preparation": "sliced" },
+      { "name": "Onions", "quantity": "2", "preparation": "sliced" },
+      { "name": "Tomato sauce", "quantity": "1 cup", "preparation": "canned" }
+    ],
+    "technique": "Simmer the shredded beef with vegetables and tomato sauce until tender.",
+    "image": "https://c5.staticflickr.com/1/390/30761366724_04cd7f0a12_o.jpg",
+    "description": "A hearty dish of slow-cooked shredded beef with vegetables in a tomato-based sauce."
+  },
+  {
+    "id": 13,
+    "name": "Arroz con Pollo",
+    "country": "Peru",
+    "ingredients": [
+      {
+        "name": "Chicken",
+        "quantity": "1 whole",
+        "preparation": "cut into pieces"
+      },
+      { "name": "Rice", "quantity": "2 cups", "preparation": "washed" },
+      { "name": "Peas", "quantity": "1 cup", "preparation": "frozen" },
+      { "name": "Carrots", "quantity": "1 cup", "preparation": "diced" }
+    ],
+    "technique": "Cook the chicken with rice and vegetables until the rice is fluffy and the chicken is tender.",
+    "image": "https://i.pinimg.com/736x/a9/43/28/a943287131aa22026e265e7b87fcfb08.jpg",
+    "description": "A classic Peruvian dish where chicken is cooked with rice, peas, and carrots, offering a fulfilling meal."
+  },
+  {
+    "id": 14,
+    "name": "Pupusas",
+    "country": "El Salvador",
+    "ingredients": [
+      {
+        "name": "Corn flour",
+        "quantity": "2 cups",
+        "preparation": "for dough"
+      },
+      { "name": "Cheese", "quantity": "1 cup", "preparation": "shredded" },
+      {
+        "name": "Pork",
+        "quantity": "1 cup",
+        "preparation": "ground and cooked"
+      },
+      { "name": "Beans", "quantity": "1 cup", "preparation": "mashed" }
+    ],
+    "technique": "Stuff dough with cheese, pork, and beans, then grill until golden.",
+    "image": "https://www.saveur.com/uploads/2019/02/08/TQTYHN32V4RGC5VGT3B3AIF6D4.jpg?auto=webp",
+    "description": "Thick corn tortillas stuffed with a blend of cheese, pork, and beans."
+  },
+  {
+    "id": 15,
+    "name": "Tamal",
+    "country": "Mexico",
+    "ingredients": [
+      {
+        "name": "Masa harina",
+        "quantity": "2 lbs",
+        "preparation": "dough prepared"
+      },
+      {
+        "name": "Chicken",
+        "quantity": "1 lb",
+        "preparation": "boiled and shredded"
+      },
+      {
+        "name": "Salsa verde",
+        "quantity": "1 cup",
+        "preparation": "prepared"
+      }
+    ],
+    "technique": "Wrap masa dough around chicken and salsa, then steam in corn husks.",
+    "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2017/10/Tamales-16.jpg",
+    "description": "Traditional Mexican dish of masa dough filled with meats or sweets and steamed in corn husks."
+  },
+  {
+    "id": 16,
+    "name": "Pastel de Choclo",
+    "country": "Chile",
+    "ingredients": [
+      { "name": "Corn", "quantity": "6 ears", "preparation": "ground" },
+      { "name": "Ground beef", "quantity": "1 lb", "preparation": "cooked" },
+      {
+        "name": "Onions",
+        "quantity": "2",
+        "preparation": "chopped and sautéed"
+      },
+      { "name": "Hard-boiled eggs", "quantity": "4", "preparation": "sliced" }
+    ],
+    "technique": "Layer the ingredients in a dish, top with corn mixture, and bake until golden.",
+    "image": "https://cdn.tasteatlas.com/images/dishes/f500f8b58c5344b0a5c19fb8fefdf994.jpg?w=600",
+    "description": "A corn pie made from layers of ground corn, meat, onions, and eggs, baked until golden."
+  },
+  {
+    "id": 17,
+    "name": "Arepas",
+    "country": "Colombia",
+    "ingredients": [
+      {
+        "name": "Cornmeal",
+        "quantity": "2 cups",
+        "preparation": "mixed with water and salt"
+      },
+      { "name": "Cheese", "quantity": "1 cup", "preparation": "shredded" }
+    ],
+    "technique": "Form dough into patties, cook on a griddle, and fill with cheese.",
+    "image": "https://therecipecritic.com/wp-content/uploads/2022/02/arepas-1.jpg",
+    "description": "A traditional Venezuelan dish consisting of dough made from ground maize dough, cooked and stuffed with cheese."
+  },
+  {
+    "id": 18,
+    "name": "Moqueca",
+    "country": "Brazil",
+    "ingredients": [
+      { "name": "Fish", "quantity": "2 lbs", "preparation": "sliced" },
+      {
+        "name": "Coconut milk",
+        "quantity": "2 cups",
+        "preparation": "canned"
+      },
+      { "name": "Tomatoes", "quantity": "2", "preparation": "chopped" },
+      { "name": "Onions", "quantity": "1", "preparation": "sliced" }
+    ],
+    "technique": "Simmer all ingredients together in a clay pot for an aromatic stew.",
+    "image": "https://www.easyanddelish.com/wp-content/uploads/2019/04/Authentic-Brazilian-moqueca-3-moqueca-da-bahia-3.jpg",
+    "description": "A Brazilian seafood stew brightly flavored with coconut milk, tomatoes, and onions."
+  },
+  {
+    "id": 19,
+    "name": "Pescado a lo Macho",
+    "country": "Peru",
+    "ingredients": [
+      { "name": "Fish fillets", "quantity": "4", "preparation": "seasoned" },
+      {
+        "name": "Mixed seafood",
+        "quantity": "1 lb",
+        "preparation": "sautéed"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "2 tbsp",
+        "preparation": "cooked"
+      },
+      {
+        "name": "White wine",
+        "quantity": "1/2 cup",
+        "preparation": "added to sauce"
+      }
+    ],
+    "technique": "Fry the fish, top with seafood in a spicy creamy sauce, and bake briefly.",
+    "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/14/68/a2/ff/pescado-a-lo-macho.jpg",
+    "description": "A Peruvian seafood dish where fried fish is topped with a creamy, spicy sauce and assorted seafood."
+  },
+  {
+    "id": 20,
+    "name": "Salteñas",
+    "country": "Bolivia",
+    "ingredients": [
+      {
+        "name": "Dough",
+        "quantity": "3 cups",
+        "preparation": "prepared and chilled"
+      },
+      {
+        "name": "Beef",
+        "quantity": "1 lb",
+        "preparation": "diced and cooked"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 cup",
+        "preparation": "diced and boiled"
+      },
+      { "name": "Peas", "quantity": "1/2 cup", "preparation": "cooked" }
+    ],
+    "technique": "Fill dough with meat mixture, shape into pastries, and bake.",
+    "image": "https://mission-food.com/wp-content/uploads/2024/01/Bolivian-Saltenas-de-Pollo-32.jpg",
+    "description": "Juicy, sweet, and spicy pastries filled with meat, vegetables, and a flavorful sauce."
+  }
+]

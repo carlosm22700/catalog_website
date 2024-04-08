@@ -7,7 +7,13 @@
  * with the JavaScript code you write in this file.
  */
 
-const dishes = [
+const QUOTES = [
+  "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors—it’s how you combine them that sets you apart. - Wolfgang Puck",
+  "The discovery of a new dish does more for the happiness of the human race than the discovery of a star. - Anthelme Brillat-Savarin",
+  "Food is our common ground, a universal experience. - James Beard",
+];
+
+const favoriteDishes = [
   {
     id: 1,
     name: "Ceviche",
@@ -98,26 +104,20 @@ const dishes = [
   },
 ];
 
+const extendedData = {
+  userFavorites: [],
+  allDishes: [],
+  favoriteDishes: favoriteDishes,
+};
+
 document.addEventListener("DOMContentLoaded", function () {
-  showCards();
-  const modal = document.getElementById("modal");
-  const span = document.getElementsByClassName("close")[0];
-
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
+  showCards(); // Initially shows the favorite dishes
 });
 
 function showCards() {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
-  dishes.forEach((dish) => {
+  favoriteDishes.forEach((dish) => {
     const cardContent = document.createElement("div");
     cardContent.className = "card";
     cardContent.innerHTML = `<div class="card-content">
@@ -130,30 +130,28 @@ function showCards() {
   });
 }
 
-function showIngredients(dishId) {
-  const dish = dishes.find((d) => d.id === dishId);
-  document.getElementById(
-    "modalIngredients"
-  ).innerHTML = `Ingredients: ${dish.ingredients
-    .map((i) => `${i.name} (${i.preparation})`)
-    .join(", ")}`;
-  document.getElementById(
-    "modalTechnique"
-  ).textContent = `Technique: ${dish.technique}`;
-  document.getElementById("modal").style.display = "block";
-}
-
-function removeLastCard() {
-  dishes.pop();
-  showCards();
-}
-
-function quoteAlert() {
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
-}
-
 function loadMoreDishes() {
-  console.log("Load more dishes feature to be implemented.");
+  fetch("moreDishes.json")
+    .then((response) => response.json())
+    .then((data) => {
+      extendedData.allDishes = data; // Load more dishes into the allDishes array
+      displayAllDishes(); // Function to display these dishes
+    })
+    .catch((error) => console.error("Error loading dishes:", error));
+}
+
+function displayAllDishes() {
+  const allDishesContainer = document.getElementById("all-dishes-container");
+  allDishesContainer.innerHTML = ""; // Clear existing dishes
+  extendedData.allDishes.forEach((dish) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<div class="card-content">
+            <h2>${dish.name}</h2>
+            <img src="${dish.image}" alt="${dish.name} Image">
+            <button onclick="showIngredients(${dish.id})">Show Ingredients</button>
+            <p>${dish.description}</p>
+        </div>`;
+    allDishesContainer.appendChild(card);
+  });
 }
