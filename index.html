@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Latin Flavors | Home</title>
-    <meta name="description" content="Explore the Richness of Latin American Cuisine">
+    <meta
+      name="description"
+      content="Explore the Richness of Latin American Cuisine"
+    />
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
-</head>
-
-<body>
+    <script type="text/javascript" src="scripts.js" defer></script>
+  </head>
+  <body>
     <header class="main-header">
-        <h1 class="title">Latin American Dishes</h1>
+      <h1 class="title">Latin American Dishes</h1>
     </header>
-    <div id="card-container">
-        
-    </div>
-    <div class="card" style="display: none;">
-        <div class="card-content">
-            <h2>TV Show Title</h2>
-            <img src="" alt="TV Show Poster">
-            <ul>
-                <li>Bullet Point 1</li>
-                <li>Bullet Point 2</li>
-                <li>Bullet Point 3</li>
-            </ul>
-        </div>
+    <div id="card-container"></div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Ingredients and Technique</h2>
+        <p id="modalIngredients"></p>
+        <p id="modalTechnique"></p>
+      </div>
     </div>
     <div class="footer">
-        <button onclick="quoteAlert();">
-            Get A Quote!
-        </button>
-        <button onclick="removeLastCard();">
-            Remove A Card!
-        </button>
+      <button onclick="quoteAlert();">Get A Quote!</button>
+      <button onclick="removeLastCard();">Remove A Card!</button>
+      <button onclick="loadMoreDishes();">Load All Dishes</button>
     </div>
-</body>
-
+  </body>
 </html>
