@@ -116,18 +116,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showCards() {
   const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML = "";
+  cardContainer.innerHTML = ""; // Clear existing cards
   favoriteDishes.forEach((dish) => {
     const cardContent = document.createElement("div");
     cardContent.className = "card";
-    cardContent.innerHTML = `<div class="card-content">
-            <h2>${dish.name}</h2>
-            <img src="${dish.image}" alt="${dish.name} Image">
-            <button onclick="showIngredients(${dish.id})">Show Ingredients</button>
-            <p>${dish.description}</p>
-        </div>`;
+    cardContent.innerHTML = `
+      <div class="card-content">
+        <h2>${dish.name}</h2>
+        <img src="${dish.image}" alt="${dish.name} Image">
+        <button class="show-ingredients" data-id="${dish.id}">Show Ingredients</button>
+        <p>${dish.description}</p>
+      </div>`;
     cardContainer.appendChild(cardContent);
   });
+  attachIngredientEventListeners(); // Attach event listeners after the HTML is added to the DOM
+}
+
+function attachIngredientEventListeners() {
+  const buttons = document.querySelectorAll(".show-ingredients"); // Get all buttons
+  buttons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const dishId = parseInt(this.getAttribute("data-id"), 10);
+      showIngredients(dishId);
+    });
+  });
+}
+
+function showIngredients(dishId) {
+  const dish = favoriteDishes.find((d) => d.id === dishId); // Ensure this is finding the correct dish
+  document.getElementById(
+    "modalIngredients"
+  ).innerHTML = `Ingredients: ${dish.ingredients
+    .map((i) => `${i.name} (${i.preparation})`)
+    .join(", ")}`;
+  document.getElementById(
+    "modalTechnique"
+  ).textContent = `Technique: ${dish.technique}`;
+  document.getElementById("modal").style.display = "block";
 }
 
 function loadMoreDishes() {
@@ -155,3 +180,10 @@ function displayAllDishes() {
     allDishesContainer.appendChild(card);
   });
 }
+
+// TODO:
+// 1. Add a function to close the modal when the close button is clicked.
+// 2. Add a function to close the modal when the user clicks outside the modal.
+// 3. Add a function to add a dish to the userFavorites array when the "Add to Favorites" button is clicked.
+// 4. Add a function to display a quote when the "Show Quote" button is clicked.
+// 5. Fix the showIngredients function to display the correct dish information for extended data.
