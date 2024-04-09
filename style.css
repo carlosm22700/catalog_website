@@ -129,3 +129,12 @@ button:hover {
   margin: 20px;
   padding: 20px 0;
 }
+
+.dish-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 2px solid #ccc;
+}

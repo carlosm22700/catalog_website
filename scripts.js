@@ -111,79 +111,106 @@ const extendedData = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  showCards(); // Initially shows the favorite dishes
+  showCards();
+  attachEventListeners();
 });
 
+const allDishes = favoriteDishes.concat(extendedData.allDishes);
+
 function showCards() {
-  const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML = ""; // Clear existing cards
-  favoriteDishes.forEach((dish) => {
-    const cardContent = document.createElement("div");
-    cardContent.className = "card";
-    cardContent.innerHTML = `
+  displayDishes(
+    favoriteDishes,
+    document.getElementById("favorite-dishes-container")
+  );
+  displayDishes(
+    extendedData.userFavorites,
+    document.getElementById("user-favorites-container")
+  );
+  displayDishes(
+    extendedData.allDishes,
+    document.getElementById("all-dishes-container")
+  );
+}
+
+function displayDishes(dishes, container) {
+  container.innerHTML = "";
+  dishes.forEach((dish) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
       <div class="card-content">
         <h2>${dish.name}</h2>
         <img src="${dish.image}" alt="${dish.name} Image">
         <button class="show-ingredients" data-id="${dish.id}">Show Ingredients</button>
+        <button class="add-to-favorites" data-id="${dish.id}">Add to Favorites</button>
         <p>${dish.description}</p>
       </div>`;
-    cardContainer.appendChild(cardContent);
+    container.appendChild(card);
   });
-  attachIngredientEventListeners(); // Attach event listeners after the HTML is added to the DOM
+  attachEventListeners(); // Re-attach listeners for all buttons after updating
 }
 
-function attachIngredientEventListeners() {
-  const buttons = document.querySelectorAll(".show-ingredients"); // Get all buttons
-  buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const dishId = parseInt(this.getAttribute("data-id"), 10);
-      showIngredients(dishId);
-    });
+function attachEventListeners() {
+  document.querySelectorAll(".show-ingredients").forEach((button) => {
+    button.onclick = () =>
+      showIngredients(parseInt(button.getAttribute("data-id"), 10));
   });
+  document.querySelectorAll(".add-to-favorites").forEach((button) => {
+    button.onclick = () =>
+      addToFavorites(parseInt(button.getAttribute("data-id"), 10));
+  });
+}
+
+function addToFavorites(dishId) {
+  const dishToAdd = allDishes.find((d) => d.id === dishId);
+  if (!extendedData.userFavorites.some((d) => d.id === dishId)) {
+    extendedData.userFavorites.push(dishToAdd);
+    displayDishes(
+      extendedData.userFavorites,
+      document.getElementById("user-favorites-container")
+    );
+    alert("Added to your favorites!");
+  } else {
+    alert("This dish is already in your favorites!");
+  }
 }
 
 function showIngredients(dishId) {
-  const dish = favoriteDishes.find((d) => d.id === dishId); // Ensure this is finding the correct dish
-  document.getElementById(
-    "modalIngredients"
-  ).innerHTML = `Ingredients: ${dish.ingredients
-    .map((i) => `${i.name} (${i.preparation})`)
-    .join(", ")}`;
-  document.getElementById(
-    "modalTechnique"
-  ).textContent = `Technique: ${dish.technique}`;
-  document.getElementById("modal").style.display = "block";
+  const dish = allDishes.find((d) => d.id === dishId);
+  if (dish) {
+    document.getElementById(
+      "modalIngredients"
+    ).innerHTML = `Ingredients: ${dish.ingredients
+      .map((i) => `${i.name} (${i.preparation})`)
+      .join(", ")}`;
+    document.getElementById(
+      "modalTechnique"
+    ).textContent = `Technique: ${dish.technique}`;
+    document.getElementById("modal").style.display = "block";
+  }
 }
+
+document.querySelector(".close").onclick = () => {
+  document.getElementById("modal").style.display = "none";
+};
+
+document.onclick = (event) => {
+  if (event.target === document.getElementById("modal")) {
+    document.getElementById("modal").style.display = "none";
+  }
+};
 
 function loadMoreDishes() {
   fetch("moreDishes.json")
     .then((response) => response.json())
     .then((data) => {
-      extendedData.allDishes = data; // Load more dishes into the allDishes array
-      displayAllDishes(); // Function to display these dishes
+      extendedData.allDishes.push(...data);
+      allDishes.push(...data);
+      displayAllDishes();
     })
     .catch((error) => console.error("Error loading dishes:", error));
 }
 
 function displayAllDishes() {
-  const allDishesContainer = document.getElementById("all-dishes-container");
-  allDishesContainer.innerHTML = ""; // Clear existing dishes
-  extendedData.allDishes.forEach((dish) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `<div class="card-content">
-            <h2>${dish.name}</h2>
-            <img src="${dish.image}" alt="${dish.name} Image">
-            <button onclick="showIngredients(${dish.id})">Show Ingredients</button>
-            <p>${dish.description}</p>
-        </div>`;
-    allDishesContainer.appendChild(card);
-  });
+  showCards();
 }
-
-// TODO:
-// 1. Add a function to close the modal when the close button is clicked.
-// 2. Add a function to close the modal when the user clicks outside the modal.
-// 3. Add a function to add a dish to the userFavorites array when the "Add to Favorites" button is clicked.
-// 4. Add a function to display a quote when the "Show Quote" button is clicked.
-// 5. Fix the showIngredients function to display the correct dish information for extended data.
