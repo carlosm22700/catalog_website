@@ -3,14 +3,23 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif;
-  background: #f7f7f7;
+  background: #f1f1f1;
 }
 
 .main-header {
+  background: linear-gradient(to right, #0057b8, #ffd700);
   background-color: #017374;
   padding: 20px 0;
   text-align: center;
   border-bottom: 6px solid #ffc107;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #e10d2c;
+  color: white;
 }
 
 .title {
@@ -85,7 +94,8 @@ body {
 }
 
 .footer {
-  background-color: #017374;
+  background-color: #012169;
+  color: white;
   padding: 10px;
   text-align: center;
   position: fixed;
@@ -98,7 +108,7 @@ body {
 }
 
 button {
-  background-color: #ff5722;
+  background-color: #ffc72c;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -111,7 +121,7 @@ button {
 }
 
 button:hover {
-  background-color: #c41c00;
+  background-color: #c49000;
 }
 
 .modal {

@@ -11,6 +11,12 @@ const QUOTES = [
   "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors—it’s how you combine them that sets you apart. - Wolfgang Puck",
   "The discovery of a new dish does more for the happiness of the human race than the discovery of a star. - Anthelme Brillat-Savarin",
   "Food is our common ground, a universal experience. - James Beard",
+  "It’s not about what you wear, but about how you live your life. — Oscar de la Renta",
+  "There is so much fear and hate. We must negate it with active, courageous love. - Alexandra Ocasio-Cortez",
+  "We must use our lives to make the world a better place to live, not just to acquire things. That is what we are put on the earth for. - Dolores Huerta",
+  "If we want to live in love, we must recognize that we already exist in it. - Rich Villodas",
+  "I don’t measure myself by others’ expectations or let others define my worth. - Sonia Sotomayor",
+  "It is through art that we will prevail and we will endure. It lives on after us and defines us as people. - Rita Moreno",
 ];
 
 const favoriteDishes = [
@@ -233,6 +239,12 @@ function loadMoreDishes() {
   } else {
     alert("All dishes are already displayed.");
   }
+}
+
+function quoteAlert() {
+  const randomIndex = Math.floor(Math.random() * QUOTES.length);
+  const quote = QUOTES[randomIndex];
+  alert(quote);
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
