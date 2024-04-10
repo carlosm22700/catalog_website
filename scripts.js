@@ -143,19 +143,24 @@ function initApp() {
 }
 
 function displayDishes(dishes, containerId, sectionTitle) {
+  const isFavoriteSection = containerId === "user-favorites-container";
   const container = document.getElementById(containerId);
   container.innerHTML = `<h2>${sectionTitle}</h2><div class="cards-container"></div>`;
   const cardsContainer = container.querySelector(".cards-container");
 
   dishes.forEach((dish) => {
-    const card = createCard(dish);
+    const card = createCard(dish, isFavoriteSection);
     cardsContainer.appendChild(card);
   });
 }
 
-function createCard(dish) {
+function createCard(dish, isFavoriteSection = false) {
   const card = document.createElement("div");
   card.className = "card";
+  let buttonHtml = isFavoriteSection
+    ? `<button class="remove-from-favorites" data-id="${dish.id}">Remove from Favorites</button>`
+    : `<button class="add-to-favorites" data-id="${dish.id}">Add to Favorites</button>`;
+
   card.innerHTML = `
         <div class="card-content">
             <h3>${dish.name} - <span class="country-name">${dish.country}</span></h3>
@@ -163,7 +168,7 @@ function createCard(dish) {
             <p>${dish.description}</p>
             <div class="card-actions">
                 <button class="show-ingredients" data-id="${dish.id}">Show Ingredients</button>
-                <button class="add-to-favorites" data-id="${dish.id}">Add to Favorites</button>
+                ${buttonHtml}
             </div>
         </div>`;
   return card;
@@ -175,6 +180,8 @@ function attachEventListeners() {
       showIngredients(event.target.dataset.id);
     } else if (event.target.matches(".add-to-favorites")) {
       addToFavorites(event.target.dataset.id);
+    } else if (event.target.matches(".remove-from-favorites")) {
+      removeFromFavorites(event.target.dataset.id);
     }
   });
 
@@ -238,6 +245,22 @@ function loadMoreDishes() {
       .catch((error) => console.error("Error loading dishes:", error));
   } else {
     alert("All dishes are already displayed.");
+  }
+}
+
+function removeFromFavorites(dishId) {
+  const index = extendedData.userFavorites.findIndex(
+    (dish) => dish.id.toString() === dishId
+  );
+  if (index !== -1) {
+    extendedData.userFavorites.splice(index, 1);
+    displayDishes(
+      extendedData.userFavorites,
+      "user-favorites-container",
+      "My Favorites",
+      true
+    );
+    alert("Removed from your favorites!");
   }
 }
 
