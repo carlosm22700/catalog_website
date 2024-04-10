@@ -191,3 +191,7 @@ button.add-to-favorites {
 .nav-bar a:hover {
   text-decoration: underline;
 }
+
+#all-dishes-container {
+  padding-bottom: 5%;
+}
