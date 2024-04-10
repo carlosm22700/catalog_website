@@ -7,6 +7,7 @@
  * with the JavaScript code you write in this file.
  */
 
+// Global Constants and State Variables
 const QUOTES = [
   "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors—it’s how you combine them that sets you apart. - Wolfgang Puck",
   "The discovery of a new dish does more for the happiness of the human race than the discovery of a star. - Anthelme Brillat-Savarin",
@@ -110,38 +111,22 @@ const favoriteDishes = [
   },
 ];
 
-let dataLoaded = false; // To check if data is already loaded
+let dataLoaded = false;
 
-// Extended data structure
 const extendedData = {
   userFavorites: [],
-  allDishes: [...favoriteDishes], // Start with favorite dishes in all dishes
+  allDishes: [...favoriteDishes],
   favoriteDishes: [...favoriteDishes],
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  initApp();
-});
-
-function initApp() {
-  displayDishes(
-    extendedData.favoriteDishes,
-    "favorite-dishes-container",
-    "Carlos' Picks"
-  );
-  displayDishes(
-    extendedData.userFavorites,
-    "user-favorites-container",
-    "My Favorites"
-  );
-  displayDishes(
-    extendedData.allDishes,
-    "all-dishes-container",
-    "Explore All Dishes"
-  );
-  attachEventListeners();
+// Utility Functions
+function formatIngredients(ingredients) {
+  return ingredients
+    .map((i) => `${i.name} (${i.quantity} ${i.preparation})`)
+    .join(", ");
 }
 
+// DOM Manipulation Functions
 function displayDishes(dishes, containerId, sectionTitle) {
   const isFavoriteSection = containerId === "user-favorites-container";
   const container = document.getElementById(containerId);
@@ -174,6 +159,7 @@ function createCard(dish, isFavoriteSection = false) {
   return card;
 }
 
+// Event Handlers
 function attachEventListeners() {
   document.body.addEventListener("click", function (event) {
     if (event.target.matches(".show-ingredients")) {
@@ -190,6 +176,31 @@ function attachEventListeners() {
   });
 }
 
+// Initialization
+document.addEventListener("DOMContentLoaded", function () {
+  initApp();
+});
+
+function initApp() {
+  displayDishes(
+    extendedData.favoriteDishes,
+    "favorite-dishes-container",
+    "Carlos' Picks"
+  );
+  displayDishes(
+    extendedData.userFavorites,
+    "user-favorites-container",
+    "My Favorites"
+  );
+  displayDishes(
+    extendedData.allDishes,
+    "all-dishes-container",
+    "Explore All Dishes"
+  );
+  attachEventListeners();
+}
+
+// Detailed interaction functions
 function showIngredients(dishId) {
   const dish = extendedData.allDishes.find((d) => d.id.toString() === dishId);
   if (dish) {
@@ -218,12 +229,6 @@ function addToFavorites(dishId) {
   } else {
     alert("This dish is already in your favorites!");
   }
-}
-
-function formatIngredients(ingredients) {
-  return ingredients
-    .map((i) => `${i.name} (${i.quantity} ${i.preparation})`)
-    .join(", ");
 }
 
 function loadMoreDishes() {

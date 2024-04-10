@@ -40,13 +40,13 @@ body {
 }
 
 .dish-section h2 {
-  width: 100%; /* Make the subtitle full width to ensure it's on its own line */
+  width: 100%;
   text-align: center;
   color: #017374;
   font-size: 24px;
   font-weight: bold;
   padding: 10px 0;
-  margin: 0 0 20px 0; /* Adjusted margin */
+  margin: 0 0 20px 0;
   border-bottom: 3px solid #ffc107;
 }
 
@@ -102,9 +102,9 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  display: flex; /* Use flexbox for layout */
-  justify-content: center; /* Center the buttons horizontally */
-  align-items: center; /* Align the buttons vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
@@ -163,21 +163,19 @@ button:hover {
   font-style: italic;
 }
 
-/* Additional styles for better alignment and presentation */
 .card-content h3 {
-  font-size: 1.3em; /* Adjust size for better fit */
+  font-size: 1.3em;
   margin: 0;
 }
 
-/* To ensure buttons fit nicely */
 button.show-ingredients,
 button.add-to-favorites {
   margin-top: 10px;
-  box-sizing: border-box; /* So padding doesn't affect width */
+  box-sizing: border-box;
 }
 
 .nav-bar {
-  background-color: #017374; /* Dark teal to match the header */
+  background-color: #017374;
   text-align: center;
   padding: 10px 0;
   margin-bottom: 20px;
