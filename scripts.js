@@ -104,85 +104,85 @@ const favoriteDishes = [
   },
 ];
 
+let dataLoaded = false; // To check if data is already loaded
+
+// Extended data structure
 const extendedData = {
   userFavorites: [],
-  allDishes: [],
-  favoriteDishes: favoriteDishes,
+  allDishes: [...favoriteDishes], // Start with favorite dishes in all dishes
+  favoriteDishes: [...favoriteDishes],
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  showCards();
-  attachEventListeners();
+  initApp();
 });
 
-const allDishes = favoriteDishes.concat(extendedData.allDishes);
-
-function showCards() {
+function initApp() {
   displayDishes(
-    favoriteDishes,
-    document.getElementById("favorite-dishes-container")
+    extendedData.favoriteDishes,
+    "favorite-dishes-container",
+    "Carlos' Picks"
   );
   displayDishes(
     extendedData.userFavorites,
-    document.getElementById("user-favorites-container")
+    "user-favorites-container",
+    "My Favorites"
   );
   displayDishes(
     extendedData.allDishes,
-    document.getElementById("all-dishes-container")
+    "all-dishes-container",
+    "Explore All Dishes"
   );
+  attachEventListeners();
 }
 
-function displayDishes(dishes, container) {
-  container.innerHTML = "";
+function displayDishes(dishes, containerId, sectionTitle) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = `<h2>${sectionTitle}</h2><div class="cards-container"></div>`;
+  const cardsContainer = container.querySelector(".cards-container");
+
   dishes.forEach((dish) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="card-content">
-        <h2>${dish.name}</h2>
-        <img src="${dish.image}" alt="${dish.name} Image">
-        <button class="show-ingredients" data-id="${dish.id}">Show Ingredients</button>
-        <button class="add-to-favorites" data-id="${dish.id}">Add to Favorites</button>
-        <p>${dish.description}</p>
-      </div>`;
-    container.appendChild(card);
+    const card = createCard(dish);
+    cardsContainer.appendChild(card);
   });
-  attachEventListeners(); // Re-attach listeners for all buttons after updating
+}
+
+function createCard(dish) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+        <div class="card-content">
+            <h3>${dish.name} - <span class="country-name">${dish.country}</span></h3>
+            <img src="${dish.image}" alt="Image of ${dish.name}">
+            <p>${dish.description}</p>
+            <div class="card-actions">
+                <button class="show-ingredients" data-id="${dish.id}">Show Ingredients</button>
+                <button class="add-to-favorites" data-id="${dish.id}">Add to Favorites</button>
+            </div>
+        </div>`;
+  return card;
 }
 
 function attachEventListeners() {
-  document.querySelectorAll(".show-ingredients").forEach((button) => {
-    button.onclick = () =>
-      showIngredients(parseInt(button.getAttribute("data-id"), 10));
+  document.body.addEventListener("click", function (event) {
+    if (event.target.matches(".show-ingredients")) {
+      showIngredients(event.target.dataset.id);
+    } else if (event.target.matches(".add-to-favorites")) {
+      addToFavorites(event.target.dataset.id);
+    }
   });
-  document.querySelectorAll(".add-to-favorites").forEach((button) => {
-    button.onclick = () =>
-      addToFavorites(parseInt(button.getAttribute("data-id"), 10));
-  });
-}
 
-function addToFavorites(dishId) {
-  const dishToAdd = allDishes.find((d) => d.id === dishId);
-  if (!extendedData.userFavorites.some((d) => d.id === dishId)) {
-    extendedData.userFavorites.push(dishToAdd);
-    displayDishes(
-      extendedData.userFavorites,
-      document.getElementById("user-favorites-container")
-    );
-    alert("Added to your favorites!");
-  } else {
-    alert("This dish is already in your favorites!");
-  }
+  document.querySelector(".close").addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+  });
 }
 
 function showIngredients(dishId) {
-  const dish = allDishes.find((d) => d.id === dishId);
+  const dish = extendedData.allDishes.find((d) => d.id.toString() === dishId);
   if (dish) {
     document.getElementById(
       "modalIngredients"
-    ).innerHTML = `Ingredients: ${dish.ingredients
-      .map((i) => `${i.name} (${i.preparation})`)
-      .join(", ")}`;
+    ).textContent = `Ingredients: ${formatIngredients(dish.ingredients)}`;
     document.getElementById(
       "modalTechnique"
     ).textContent = `Technique: ${dish.technique}`;
@@ -190,27 +190,49 @@ function showIngredients(dishId) {
   }
 }
 
-document.querySelector(".close").onclick = () => {
-  document.getElementById("modal").style.display = "none";
-};
-
-document.onclick = (event) => {
-  if (event.target === document.getElementById("modal")) {
-    document.getElementById("modal").style.display = "none";
+function addToFavorites(dishId) {
+  const dishToAdd = extendedData.allDishes.find(
+    (d) => d.id.toString() === dishId
+  );
+  if (!extendedData.userFavorites.some((d) => d.id.toString() === dishId)) {
+    extendedData.userFavorites.push(dishToAdd);
+    displayDishes(
+      extendedData.userFavorites,
+      "user-favorites-container",
+      "My Favorites"
+    );
+    alert("Added to your favorites!");
+  } else {
+    alert("This dish is already in your favorites!");
   }
-};
+}
+
+function formatIngredients(ingredients) {
+  return ingredients
+    .map((i) => `${i.name} (${i.quantity} ${i.preparation})`)
+    .join(", ");
+}
 
 function loadMoreDishes() {
-  fetch("moreDishes.json")
-    .then((response) => response.json())
-    .then((data) => {
-      extendedData.allDishes.push(...data);
-      allDishes.push(...data);
-      displayAllDishes();
-    })
-    .catch((error) => console.error("Error loading dishes:", error));
+  if (!dataLoaded) {
+    fetch("moreDishes.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const newDishes = data.filter(
+          (d) => !extendedData.allDishes.some((dish) => dish.id === d.id)
+        );
+        extendedData.allDishes.push(...newDishes);
+        displayDishes(
+          extendedData.allDishes,
+          "all-dishes-container",
+          "Explore All Dishes"
+        );
+        dataLoaded = true;
+      })
+      .catch((error) => console.error("Error loading dishes:", error));
+  } else {
+    alert("All dishes are already displayed.");
+  }
 }
 
-function displayAllDishes() {
-  showCards();
-}
+document.addEventListener("DOMContentLoaded", initApp);
